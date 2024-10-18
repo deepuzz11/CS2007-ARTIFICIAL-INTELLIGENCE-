@@ -9,7 +9,6 @@ This repository contains implementations of various search algorithms commonly u
 - [Algorithms Overview](#algorithms-overview)
 - [Implementation](#implementation)
 - [Results](#results)
-- [License](#license)
 
 ## Introduction
 
@@ -17,68 +16,54 @@ Searching algorithms are fundamental in computer science for retrieving data fro
 
 ## Algorithms Overview
 
-### 1. Linear Search
-- **Description**: A simple search algorithm that checks each element in a list until the desired element is found or the list ends.
-- **Time Complexity**: O(n)
+### 1. British Museum Search (BMS)
+- **Description**: A search algorithm that employs lexicographical ordering and exploration. It explores all possible paths without dead-end retracement and allows multiple solutions.
 
-### 2. Binary Search
-- **Description**: A search algorithm that finds the position of a target value within a sorted array by repeatedly dividing the search interval in half.
-- **Time Complexity**: O(log n)
+### 2. Depth First Search (DFS)
+- **Description**: An uninformed search algorithm that uses backtracking and preemptive exit. It explores as far down a branch as possible before backtracking.
 
-### 3. Depth-First Search (DFS)
-- **Description**: An algorithm for traversing or searching tree or graph data structures, starting at the root and exploring as far as possible along each branch before backtracking.
-- **Time Complexity**: O(V + E)
+### 3. Breadth First Search (BFS)
+- **Description**: A variation of DFS that utilizes a horizontal greedy method and does not require traceback. It explores all neighbors before moving to the next level.
 
-### 4. Breadth-First Search (BFS)
-- **Description**: An algorithm for traversing or searching tree or graph data structures that explores all the neighbor nodes at the present depth prior to moving on to nodes at the next depth level.
-- **Time Complexity**: O(V + E)
+### 4. Hill Climbing Search
+- **Description**: A variation of DFS that employs heuristics to make decisions. If a tie occurs, it applies lexicographical ordering to select the next node.
 
-### 5. A* Search
-- **Description**: A graph traversal and pathfinding algorithm that uses heuristics to improve search efficiency.
-- **Time Complexity**: O(E) (where E is the number of edges)
+### 5. Beam Search
+- **Description**: A variant of BFS with a defined beam width that limits the number of nodes explored at each level.
 
-### 6. Dijkstra's Algorithm
-- **Description**: An algorithm for finding the shortest paths between nodes in a graph, which may represent, for example, road networks.
-- **Time Complexity**: O(V^2) or O(E + V log V) with a priority queue.
+### 6. Oracle
+- **Description**: An extension of the British Museum Search that takes into account the amount of work done so far, using an absolute measure.
 
-### 7. Uniform Cost Search
-- **Description**: A search algorithm that expands the least costly node first.
-- **Time Complexity**: O(E + V)
+### 7. Branch and Bound (B&B)
+- **Description**: An informed search that applies the oracle first, uses cost comparisons, and allows preemptive exits without backtracking.
 
-### 8. Bidirectional Search
-- **Description**: A search algorithm that finds the shortest path by simultaneously searching from both the initial state and the goal state.
-- **Time Complexity**: O(b^(d/2))
+### 8. Branch and Bound with Extended Lists
+- **Description**: Implements the Dead Horse Principle (DHP), avoids exhaustive search, stores visited nodes, and expands nodes with less cost than the oracle.
 
-### 9. Hill Climbing
-- **Description**: A mathematical optimization algorithm that continuously moves towards the direction of increasing value (uphill) to find the peak.
-- **Time Complexity**: O(n)
+### 9. Branch and Bound with Heuristics and Estimates
+- **Description**: This algorithm calculates and compares cost and estimates with the oracle to find the optimal solution.
 
-### 10. Simulated Annealing
-- **Description**: A probabilistic technique for approximating the global optimum of a given function, inspired by the annealing process in metallurgy.
-- **Time Complexity**: O(n)
+### 10. A* Search
+- **Description**: Combines B&B with cost, estimates, DHP, and oracle for efficient pathfinding and optimization.
 
-### 11. Greedy Best-First Search
-- **Description**: An algorithm that selects the path that appears to be the best at each step, based on a heuristic function.
-- **Time Complexity**: O(b^m) where m is the maximum depth.
+### 11. AO*
+- **Description**: An extension of the A* algorithm, used for directed acyclic graphs.
 
-### 12. Beam Search
-- **Description**: A search algorithm that explores a graph by expanding the most promising nodes in a limited set.
-- **Time Complexity**: O(b^w) where w is the beam width.
+### 12. Best First Search
+- **Description**: An informed search algorithm that selects the next node based on the lowest cost estimate.
 
 ## Implementation
 
 The implementations are written in Python and include the following key components for each algorithm:
 
 1. **Algorithm Function**: Each algorithm has its own function to execute the search logic.
-2. **Data Structures**: Various data structures are used (arrays, graphs, etc.) to demonstrate the search capabilities.
-3. **Visualization**: Some algorithms include visualizations using `matplotlib` to illustrate their search process.
+2. **Visualization**: Some algorithms include visualizations using `matplotlib` to illustrate their search process.
 
 ## Results
 
 Upon running the scripts for each algorithm, you will receive outputs showcasing:
 
 - Search paths taken by each algorithm.
-- Time taken to find the desired element or path.
 - Visual representations of the search process, if applicable.
 
 ### Sample Input
@@ -88,12 +73,6 @@ The input format varies by algorithm and can include lists, graphs, or specific 
 ### Sample Output
 
 The output will vary based on the algorithm, demonstrating the effectiveness of each search method.
-
-## License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
----
 
 # CIA - 2
 # Minimax and Alpha-Beta Pruning Algorithms
