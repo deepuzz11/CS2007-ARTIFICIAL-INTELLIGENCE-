@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph Search Algorithms</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background-color: #d5e2ef;
+            color: rgb(10, 5, 68);
+            padding: 20px;
+            text-align: center;
+        }
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            margin: 10px 0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin: 10px 0 5px;
+        }
+        input[type="text"], select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #result {
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 15px;
+            white-space: pre-wrap;
+        }
+        #graph-image {
+            margin-top: 15px;
+            max-width: 100%;
+            height: auto;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #d5e2ef;
+            color: rgb(10, 5, 68);
+            border-top: 1px solid #ccc;
+            font-size: 20px; /* Increase font size */
+            font-weight: bold; /* Make text bold */
+        }
+        @media (max-width: 600px) {
+            main {
+                padding: 15px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CS2007 ARTIFICIAL INTELLIGENCE - SEARCH ALGORITHMS </h1>
+    </header>
+    <main>
+        <form id="graph-form">
+            <label for="vertices">Vertices (comma-separated):</label>
+            <input type="text" id="vertices" required placeholder="e.g. A,B,C,D">
+            <label for="edges">Edges (u,v,weight; separated by semicolon):</label>
+            <input type="text" id="edges" required placeholder="e.g. A,B,1; A,C,2">
+            <label for="start">Start Vertex:</label>
+            <input type="text" id="start" required placeholder="e.g. A">
+            <label for="goal">Goal Vertex:</label>
+            <input type="text" id="goal" required placeholder="e.g. D">
+            <label for="algorithm">Select Algorithm:</label>
+            <select id="algorithm">
+                <option value="bms">British Museum Search</option>
+                <option value="dfs">Depth-First Search</option>
+                <option value="bfs">Breadth-First Search</option>
+                <option value="hill_climbing">Hill Climbing Search</option>
+                <option value="beam_search">Beam Search</option>
+                <option value="branch_and_bound">Branch and Bound</option>
+                <option value="branch_and_bound_extended">Branch and Bound+ Extended List</option>
+                <option value="branch_and_bound_with_heuristics">Branch and Bound + Extended List +Estimates+Heuristics</option>
+                <option value="oracle">Oracle</option>
+                <option value="best_first">Best-First Search</option>
+                <option value="a_star">A*</option>
+                <option value="ao_star">AO*</option>
+            </select>
+            <button type="submit">Solve</button>
+        </form>
+
+        <h2>Path Result:</h2>
+        <pre id="result"></pre>
+
+        <h2>Graph Visualization:</h2>
+        <img id="graph-image" src="" alt="Graph Visualization" style="display:none;">
+    </main>
+
+    <footer>
+        <p>DEEPIKA P</p>
+        <p>BTECH CSE CYBERSECURITY</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#graph-form').submit(function(event) {
+                event.preventDefault();
+
+                const vertices = $('#vertices').val().split(',').map(v => v.trim());
+                const edges = $('#edges').val().split(';').map(e => {
+                    const [u, v, weight] = e.split(',').map(x => x.trim());
+                    return [u, v, weight];
+                });
+                const start = $('#start').val().trim();
+                const goal = $('#goal').val().trim();
+                const algorithm = $('#algorithm').val();
+
+                $.ajax({
+                    url: '/solve',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({
+                        vertices: vertices,
+                        edges: edges,
+                        start: start,
+                        goal: goal,
+                        algorithm: algorithm
+                    }),
+                    success: function(response) {
+                        $('#result').text(JSON.stringify(response.path, null, 2));
+                        $('#graph-image').attr('src', 'static/initial_graph.png').show();
+                    },
+                    error: function(xhr) {
+                        $('#result').text('Error: ' + xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
