@@ -77,6 +77,9 @@ The input format varies by algorithm and can include lists, graphs, or specific 
 The output will vary based on the algorithm, demonstrating the effectiveness of each search method.
 ![image](https://github.com/user-attachments/assets/853ef189-9783-4f61-b474-b64ee8c48c84)
 
+![image](https://github.com/user-attachments/assets/4a961c4b-7828-4531-b6d5-b84ec5e4f2a7)
+
+
 
 # CIA - 2
 # Minimax and Alpha-Beta Pruning Algorithms
@@ -137,6 +140,7 @@ The program will also generate evaluation tables for both algorithms, showcasing
 
 Here’s an example of what the output might look like:
 ![alt text](image-1.png)
+
 ![alt text](image.png)
 
 ## License
