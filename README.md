@@ -69,10 +69,14 @@ Upon running the scripts for each algorithm, you will receive outputs showcasing
 ### Sample Input
 
 The input format varies by algorithm and can include lists, graphs, or specific data structures.
+![image](https://github.com/user-attachments/assets/3a5834de-b7c3-48ef-8351-0baa6f267168)
+
 
 ### Sample Output
 
 The output will vary based on the algorithm, demonstrating the effectiveness of each search method.
+![image](https://github.com/user-attachments/assets/853ef189-9783-4f61-b474-b64ee8c48c84)
+
 
 # CIA - 2
 # Minimax and Alpha-Beta Pruning Algorithms
